@@ -1,0 +1,35 @@
+<script>
+//пытался сначала просто получить объекты из строк, до функции дело не дошло    
+
+let keys = [];
+let values = [];
+let result = [];
+
+//получаем массив из значений (здесь хотел получить массив, состоящий из массивов типа [1, up, 10, 5, march])
+//что-то не додумался как сделать
+let td = document.querySelectorAll('td');
+for(let i = 0; i < td.length; i++) {
+    values.push(td[i].textContent);
+}
+
+//console.log(values);
+
+
+//получаем массив из ключей
+let th = document.querySelectorAll('th');
+for(let i = 0; i <th.length; i++) {
+    keys.push((th[i].textContent));
+}
+//console.log(keys);
+
+
+//выводим результат
+for (let i = 0; i < values.length; i++) {
+ let obj = {};
+ for (let j = 0; j < keys.length; j++) {
+  obj[keys[j]] = values[i];
+ }
+ result.push(obj);
+}
+console.table(result);
+</script>
