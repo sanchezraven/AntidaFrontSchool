@@ -1,0 +1,35 @@
+<div class="one"></div>
+<div class="two"></div>
+
+<script>
+	//для className
+	let a;
+	
+	let el1 = document.querySelector(".one");
+	console.time(a);
+		for(let i =0; i < 1000; i++) {
+			el1.className += `${i}`;
+
+			//console.log(el1.className);
+		}
+		
+	console.timeEnd(a);
+
+	//для classList.add
+	let b;
+	
+	let el2 = document.querySelector(".two");
+	console.time(b);
+		for(let i =0; i < 1000; i++) {
+			el2.classList.add (`${i}`);
+
+			//console.log(el2.className);
+		}
+		
+	console.timeEnd(b);
+
+	//не знаю насколько это эквивалентные вычисления, но className выполняет
+	//почти в 100 раз быстрее
+
+
+</script>
