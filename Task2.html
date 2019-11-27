@@ -1,0 +1,73 @@
+<script>
+let response = {
+    data: [
+    { score: 10, name: 'Bob' , age: 18},
+    { score: 5, name: 'Job', age: 46},
+    { score: 50, name: 'Bill', age: 34},
+    { score: 40, name: 'Jill', age: 13},
+    ],
+
+    //массив со строками вида: “Bob - 18: 10”
+    toString: function(){
+        let stringArray =[];
+        for(let i =0 ; i < this.data.length; i++){
+            stringArray.push(this.data[i].name + ' - ' + this.data[i].age + ': ' + this.data[i].score);
+        }
+        return (stringArray);
+    }
+}
+
+//сумма очков
+function countScores (){
+    let sum =0;
+    for(let i =0 ; i < response.data.length; i++){
+      sum += response.data[i].score;  
+    }
+    console.log(sum);
+}
+
+//массив с участниками старше 18
+function checkAdult(){
+    let adultPlayers = [];
+    for(let i =0 ; i < response.data.length; i++){
+        if(response.data[i].age > 18){
+            adultPlayers.push(response.data[i]);
+        }
+    }
+    console.log(adultPlayers);
+}
+
+//массив с участниками с именем, начинающимся на B
+function checkBName(){
+    let startB = [];
+    for(let i =0 ; i < response.data.length; i++){
+        if(response.data[i].name[0] == 'B'){
+            startB.push(response.data[i]);
+        }
+    }
+    console.log(startB);  
+}
+
+//массив чисел в виде строк, суммы очков участников, сгруппированных по возрасту
+//не совсем понял формулировку, отсортировал возраст по возрастающей
+let arr = response.data;
+function arrSortString (arr){
+    arr.sort((a, b) => a.age > b.age ? 1 : -1);
+    let scoreString = [];
+    for(let i =0 ; i < arr.length; i++){
+        scoreString.push(arr[i].score.toString());
+    }
+    console.log(scoreString);
+}
+
+
+
+countScores ();
+checkAdult();
+checkBName();
+console.log(response.toString());   //здесь правильный вызов или нужно чтобы при console.log(response)
+                                    //выводился массив?
+
+arrSortString (arr);
+
+</script>
