@@ -1,0 +1,113 @@
+<script>
+/**
+* реализовать функцию-конструктор копилки
+* - номер счета - 3-х значное число, начиная с 1
+* - если номер меньше трехзначного числа, слева заполняем нулями
+* - состояние счета при создании, учитывается в транзакциях
+*/
+
+function Moneybox(count) {
+    let accountNumber;
+    let i = 1;
+    accountNumber = String(i);
+    while(accountNumber.length < 3)
+    accountNumber = '0' + accountNumber; // хотел return' ом возвращать accountNumber++, но в конструкторах
+                                         // явно ничего лучше не возвращать, как я понял. Не догадался как увеличить
+    this.accountNumber = accountNumber;
+    this.count = count;
+    if (this.count === void 0){
+        this.count = 0;
+    }
+    let trans = [`${this.count}`];
+    this.trans = trans;
+}
+/**
+* реализовать получение информации о состоянии копилки
+* вывод должен быть в формате
+*
+* ***
+* Номер: 001
+* На счету: 150
+* Транзакции: 200, -100, 50
+* ***
+*/
+function getMoneyboxInfo() {
+    return `Номер: ${this.accountNumber} На счету: ${this.count} Транзакции: ${this.trans}`;
+}
+
+
+/**
+* реализовать добавление в копилку
+*/
+function addToMoneybox(newCount) {
+        return [this.count += +newCount,
+        this.trans.push(newCount)];
+    }
+    
+
+/**
+* реализовать изъятие из копилки
+*/
+function takeFromMoneybox(newCount) {
+    return [this.count -= newCount,
+    this.trans.push(`-${newCount}`)]
+}
+
+const moneybox1 = new Moneybox(50);
+const moneybox2 = new Moneybox;
+
+/**
+* пиши код ниже
+*/
+let addToMoneybox1 = (addToMoneybox.bind(moneybox1));
+let takeFromMoneybox1 = (takeFromMoneybox.bind(moneybox1));
+
+let addToMoneybox2 = (addToMoneybox.bind(moneybox2));
+let takeFromMoneybox2 = (takeFromMoneybox.bind(moneybox2));
+
+let moneybox1Info = (getMoneyboxInfo.bind(moneybox1))();
+let moneybox2Info = (getMoneyboxInfo.bind(moneybox2));
+
+function take250FromMoneybox2(){                                // это наверняка как-то можно упростить
+    let result = 'take250FromMoneybox2'.match(/(\d{1,10})/); 
+    return takeFromMoneybox2(result[1]);
+}
+
+function take10FromMoneybox1(){
+    let result = 'take10FromMoneybox2'.match(/(\d{1,10})/);
+    return takeFromMoneybox1(result[1]);
+}
+
+function add100ToMoneybox1(){
+    let result = 'add100ToMoneybox1'.match(/(\d{1,10})/);
+    return addToMoneybox1(result[1]);
+}
+
+
+/**
+* пиши код выше
+*/
+
+
+/**
+* используя addToMoneybox и takeFromMoneybox определи следующие функции
+*/
+add100ToMoneybox1();    // добавит 100 в moneybox1
+addToMoneybox2(500);    // добавит 500 в moneybox2
+take250FromMoneybox2(); // изымает 250 из moneybox2
+take10FromMoneybox1();  // изымает 10 из moneybox1
+/**
+* используя getMoneyboxInfo определи следующие переменные
+*/
+console.log(moneybox1Info);  //не работает, т.к. moneybox1Info нужно определить перед этим, поигрался с setTimeout, 
+console.log(moneybox2Info());  //но что-то тоже не вышло
+                                //let moneybox2Info = function a (){
+                                //  setTimeout(function b (){
+                                //      getMoneyboxInfo.bind(moneybox2)}(), 5);
+                                // }();
+
+
+
+
+
+</script>
