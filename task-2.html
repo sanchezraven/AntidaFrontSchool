@@ -1,0 +1,31 @@
+<script>
+"use strict";
+function Rectangle (width, height){
+    this.width = width;
+    this.height = height;
+    this.unit = ' см';
+
+    this.showParam = function(){
+        return ('Ширина: ' + this.width + this.unit +', высота: ' + this.height + this.unit);
+    }
+
+}
+
+function getArea(){
+    return ('Площадь: ' + this.width * this.height + ' см2');
+}
+
+function getPerimetr(){
+    return ('Периметр: ' + 2 * (rectangle.width + rectangle.height) + ' см');
+}
+
+let rectangle = new Rectangle(60, 20);
+
+let area = getArea.bind(rectangle);
+let perimetr = getPerimetr.bind(rectangle);
+
+console.log (rectangle.showParam());
+console.log (area());
+console.log (perimetr());
+
+</script>
