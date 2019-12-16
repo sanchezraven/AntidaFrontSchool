@@ -1,0 +1,27 @@
+<script>
+//1-oe
+function add(a){
+  return function (b){
+    console.log (a+b);
+  }
+}
+
+add(5)(10);
+add(2)(2);
+
+
+//2-е
+Number.prototype.minus = function (a){
+    return(this - a);
+}
+Number.prototype.plus = function (a){
+    return(this + a);
+}
+let ab = (5).plus(3).minus(6);
+console.log(ab);
+
+
+//3-е
+Array.prototype.startsWith = String.prototype.startsWith;
+console.log([1,2,3].startsWith(1));
+</script>

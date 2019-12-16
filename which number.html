@@ -1,0 +1,40 @@
+<script>
+function game (n = 10, tries = 3){
+  let number = Math.round(Math.random() * (n-1)+1);
+  let attempts =0;
+  function guessNumber (){
+    if(attempts == tries){
+      console.log('Попытки исчерпаны');
+      return;
+    }
+    attempts++;
+    let result = parseInt(prompt("Введите число (-1 - закончить игру) " + number));
+
+    if (result == number){
+      console.log('Угадали! Число попыток: '+ attempts);
+      return;
+    }
+
+    else if (result == 0 || isNaN(result)){
+      console.log('Введено не число');
+      guessNumber();
+    }
+
+    else if(result == -1){
+      console.log('Слабак!')
+    }
+
+    else {
+      if (result > number){
+        console.log('Число больше загаданного');
+      }
+      else{
+        console.log('Число меньше загаданного');
+      }
+      guessNumber();
+    }
+  }
+  guessNumber ();
+}
+game();
+</script>
