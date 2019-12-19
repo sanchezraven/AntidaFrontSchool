@@ -1,0 +1,63 @@
+<script>
+
+class Human {
+	constructor(name, lastName){
+		this.name = name;
+		this.lastName = lastName;
+	}
+
+	get fullName (){					//здесь нужно заменить префикс get на hello? не додумался как сделать
+		return `Hello ${this.name} ${this.lastName}`; 
+	}
+
+	set fullName (value){
+		[this.name, this.lastName] = value.split(' ');
+	}
+}
+
+let a = new Human('james', 'bond');
+console.log(a.fullName);
+
+class HumanAge extends Human {
+	constructor(name, lastName, age){
+		super(name, lastName);
+		this.age = age;	
+	}
+	
+	isAdult (){
+		if (this.age > 15){
+			return true;
+		}
+		else return false;		
+	}
+}
+
+let b = new HumanAge('Izzy', 'Osborne', 71);
+let c = new HumanAge('Kurtka', 'Bayne', 15);
+let d = new HumanAge('Varg', 'Bikernes', 46);
+let f = new HumanAge('Igor', 'Nikolayev', 10);
+
+let heaven = [b,c,d,f];
+let evenArr = [];
+let adult = [];
+let minorName = [];
+
+for (let number in heaven){
+	if(number%2 == 0){
+		evenArr.push(heaven[number]);
+	}
+}
+
+for (let people of heaven){
+	if (people.age > 18){
+		adult.push(people);	
+	}
+	else{
+		minorName.push(people.name);	
+	}
+}
+
+console.log(evenArr);
+console.log(adult);
+console.log(minorName );
+</script>
